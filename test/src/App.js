@@ -1,77 +1,74 @@
 import logo from "./logo.svg";
 import "./App.css";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+
+import React from "react";
 import Home from "./Comp/Home";
+import Button from "./Comp/Button";
+import Axios_file from "./Comp/Axios_file";
+import Class from "./Comp/Class";
+import Function from "./Comp/Function";
+import ContextProvider from "./Comp/Context/ContextProvider";
+import { createContext, lazy, useId, useState } from "react";
+import Reducer from "./Comp/Reducer";
+import DataFetching from "./Comp/DataFetching";
+import Route_File from "./Comp/Route_File";
+import Tailwind_file from "./Comp/Tailwind_file";
+import Query_file from "./Comp/Query_file";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Infinity_query from "./Comp/Infinity_query";
+
+const LazyComponent = React.lazy(() => import("../src/Comp/Todo"));
+
+export const contextTheme = createContext();
+
 function App() {
-  const [data, setdata] = useState([]);
-  const [inputdata, setinputdata] = useState({
-    title: "",
-  });
+  const handleclick = () => {
+    alert("click butoon");
+  };
+  const handlecancle = () => {
+    alert("cancle");
+  };
 
-  // fetch("https://jsonplaceholder.typicode.com/todos")
-  //   .then((res) => res.json())
-  //   .then((d) => setdata(d));
+  // const [theme, settheme] = useState("light");
+  const [theme, settheme] = useState(false);
+  // const toggletheme = () => {
+  //   settheme(!theme);
+  // };
 
-  useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/todos")
-      .then((d) => setdata(d.data))
-      .catch((err) => console.log(err));
-  }, []);
+  // const text = "hello";
 
-  function handlesubmit() {
-    axios
-      .post("https://jsonplaceholder.typicode.com/todos", {
-        title: inputdata.title,
-      })
-      .then((d) => console.log(d.data))
-      .catch((err) => console.log(err));
-  }
+  // const id1 = useId();
+  // const id2 = useId();
+  const queryClient = new QueryClient();
 
-  function handledelelete(id) {
-    axios
-      .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
-      .then((d) => {
-        console.log(d.data);
-        alert("delete successfully");
-      })
-      .catch((err) => console.log(err));
-  }
-
-  function handleupdate(id) {
-    axios
-      .put(`https://jsonplaceholder.typicode.com/todos/${id}`, {
-        title: inputdata.title,
-      })
-      .then((d) => {
-        console.log(d.data);
-        alert("Todo updated successfully!");
-      })
-      .catch((err) => console.log(err));
-  }
   return (
     <div className="App">
-      <Home date={Date()} />
-      <input
-        type="text"
-        name="title"
-        value={inputdata.title}
-        onChange={(e) => setinputdata({ ...inputdata, title: e.target.value })}
-      />
-      <button type="button" onClick={handlesubmit}>
-        submit
-      </button>
-      <h1>data get</h1>
-      {data.map((i) => {
-        return (
-          <>
-            <p>{i.title}</p>
-            <button onClick={() => handleupdate(i.id)}>update</button>
-            <button onClick={() => handledelelete(i.id)}>delete</button>
-          </>
-        );
-      })}
+      {/* <p>the id : {id1}</p>
+      <p>the id: {id2}</p> */}
+      {/* <contextTheme.Provider value={{ theme, settheme,text }}> */}
+      {/* <contextTheme.Provider value={{ theme, toggletheme, settheme }}> */}
+      {/* <contextTheme.Provider value={{ theme, settheme }}>
+        <ContextProvider />
+      </contextTheme.Provider> */}
+
+      {/* <Home date={Date()} /> */}
+
+      {/* <Button onClick1={handleclick} onClick2={handlecancle} /> */}
+      {/* <Class /> */}
+      {/* <Function/> */}
+      {/* <Axios_file /> */}
+      {/* <Reducer /> */}
+      {/* <DataFetching /> */}
+      <Route_File />
+      {/* <Tailwind_file /> */}
+
+      {/* <QueryClientProvider client={queryClient}>
+        {/* <Query_file /> 
+        <Infinity_query />
+      </QueryClientProvider> */}
+      {/* <React.Suspense fallback={<div>loading...</div>}>
+        <LazyComponent />
+      </React.Suspense> */}
     </div>
   );
 }
