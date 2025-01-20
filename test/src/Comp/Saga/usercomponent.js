@@ -47,8 +47,18 @@ const Usercomponent = () => {
         {items.map((item) => (
           <li key={item.id}>
             <span>{item.title}</span>
-            <button onClick={() => handleUpdate(item.id)}>update</button>
-            <button onClick={() => handleDelete(item.id)}>Delete</button>
+            <button
+              onClick={() => handleUpdate(item.id)}
+              style={{ border: "1px solid black" }}
+            >
+              update
+            </button>
+            <button
+              onClick={() => handleDelete(item.id)}
+              style={{ border: "1px solid black" }}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>

@@ -13,7 +13,6 @@ import Todo_redux from "./Redux/Todo_redux";
 import Todo from "./Redux_toolkit/Todo";
 import Counter from "../React_redux/counter";
 import Datafetching from "./Redux_toolkit_axios/Datafetching";
-import DataList from "./redux_saga/DataFetching";
 function Route_File() {
   return (
     <>
@@ -32,7 +31,7 @@ function Route_File() {
           {/* <Route path="/" element={<Todo/>}/> */}
           {/* <Route path="/" element={<Counter />} /> */}
           {/* <Route path="/" element={<Datafetching />} /> */}
-          <Route path="/" element={<DataList />} />
+    
         </Routes>
       </BrowserRouter>
     </>
